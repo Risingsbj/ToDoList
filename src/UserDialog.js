@@ -21,9 +21,9 @@ export default class UserDialog extends Component{
   	signUp(e){}
   	signIn(e){}
   	changeUsername(e){
-  	    // this.state.formData.username = e.target.value
-    	// this.setState(this.state)
-    	// 像上面这样写会看到一个警告 warning  Do not mutate state directly. Use setState()
+  	        // this.state.formData.username = e.target.value
+    	        // this.setState(this.state)
+    	        // 像上面这样写会看到一个警告 warning  Do not mutate state directly. Use setState()
   		let stateCopy = JSON.parse(JSON.stringify(this.state))    // 用 JSON 深拷贝
   		stateCopy.formData.username = e.target.value
   		this.setState(stateCopy)
