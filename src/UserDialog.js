@@ -23,7 +23,7 @@ export default class UserDialog extends Component{
       e.preventDefault()
       let {username, password} = this.state.formData
       let success = (user)=>{
-        console.log(user)
+        this.props.onSignUp.call(null, user)
       }
       let error = (error)=>{
         console.log(error)
@@ -80,7 +80,7 @@ export default class UserDialog extends Component{
             			<label><input type="radio" value="signIn" checked={this.state.selected === 'signIn'}/> 登录</label>
           			</nav>
           			<div className="panes">
-            		    {this.state.selected === 'signUp' ? signUpForm : null}
+            		  {this.state.selected === 'signUp' ? signUpForm : null}
             			{this.state.selected === 'signIn' ? signInForm : null}
           			</div>
         		</div>
