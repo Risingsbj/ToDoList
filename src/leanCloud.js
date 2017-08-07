@@ -54,6 +54,6 @@ export function signOut(){
 function getUserFromAVUser(AVUser){
   	return {
    	 	id: AVUser.id,
-    	...AVUser.attributes
+    	...AVUser.attributes   //...是展开运算符，把 AVUser.atrributes 的属性加入当前对象
     }
 }

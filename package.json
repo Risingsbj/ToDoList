@@ -2,7 +2,7 @@
   "name": "temp1",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jirengu-inc.github.io/react1/build",
+  "homepage": "https://jirengu-inc.github.io/react2/build",
   "dependencies": {
     "leancloud-storage": "^3.0.3",
     "normalize.css": "^7.0.0",

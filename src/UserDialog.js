@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './UserDialog.css'
 import {signUp,signIn} from './leanCloud'
+import deepCopy from './deepCopy'
 
 
 export default class UserDialog extends Component{
@@ -30,6 +31,9 @@ export default class UserDialog extends Component{
           case 202:
             alert('用户名已被占用')
             break
+          case 217:
+            alert('无效的用户名')
+            break
           default:
             alert(error)
             break
@@ -48,6 +52,18 @@ export default class UserDialog extends Component{
           case 210:
             alert('用户名与密码不匹配')
             break
+            case 502:
+            alert('服务器维护中')
+            break
+            case 124:
+            alert('请求超时,请检查网络')
+            break
+            case 126:
+            alert('用户不存在')
+            break
+            case 201:
+            alert('密码不能为空')
+            break
           default:
             alert(error)
             break
@@ -56,7 +72,7 @@ export default class UserDialog extends Component{
       signIn(username, password, success, error)
     }
   	changeFormData(key,e){
-  		let stateCopy = JSON.parse(JSON.stringify(this.state))     //用JSON深拷贝
+  		let stateCopy = deepCopy(this.state)     //用JSON深拷贝
   		stateCopy.formData[key] = e.target.value
   		this.setState(stateCopy)
   	}
