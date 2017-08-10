@@ -16,6 +16,7 @@ export const TodoModel = {
   getByUser(user, successFn, errorFn){
     // 文档见 https://leancloud.cn/docs/leanstorage_guide-js.html#批量操作
     let query = new AV.Query('Todo')
+    query.equalTo('deleted', false);
     query.find().then((response) => {
       let array = response.map((t) => {
         return {id: t.id, ...t.attributes}
@@ -70,13 +71,8 @@ export const TodoModel = {
 
   },
   destroy(todoId, successFn, errorFn){
-    // 文档 https://leancloud.cn/docs/leanstorage_guide-js.html#删除对象
-    let todo = AV.Object.createWithoutData('Todo', todoId)
-    todo.destroy().then(function (response) {
-      successFn && successFn.call(null)
-    }, function (error) {
-      errorFn && errorFn.call(null, error)
-    });
+    // 我们不应该删除数据，而是将数据标记为 deleted
+    TodoModel.update({id: todoId, deleted: true}, successFn, errorFn)
   }
 }
 
