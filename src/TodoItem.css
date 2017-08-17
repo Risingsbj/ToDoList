@@ -1,9 +1,41 @@
 .TodoItem{
-  padding: .5em;
-  display: flex;
-  align-items: center;
+    border-radius: 4px;
+    margin: 1px;
+    background-color: #fff;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
 }
+
+.TodoItem>input[type="checkbox"]{
+    display: none;
+}
+
+.TodoItem>input[type="checkbox"]+label{
+    text-decoration: none;
+}
+
 .TodoItem>.title{
-  flex-grow: 1;
-  padding: 0 .5em;
+    flex-grow: 1;
+    padding: 0 0.5em;
+}
+
+.TodoItem>.completed~.title{
+    text-decoration: line-through;
+    color: #999;
+}
+
+.TodoItem>button{
+    border: none;
+    background-color: transparent;
+}
+
+.TodoItem i{
+    color: #0f88eb;
+    cursor: pointer;
+}
+
+.TodoItem i:hover{
+    opacity: 0.7;
 }

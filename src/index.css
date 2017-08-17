@@ -1,8 +1,21 @@
 body {
-    background: #ddd;
+  /*background-image: url('./../public/images/bg-app.jpg');*/
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100vw;
+  background: rgb(243,243,243);
 }
+
+@media (max-aspect-ratio: 1024/683){
+    body{
+      background-size: auto 100vh;
+    }
+}
+
+
 #root{
-   	display: flex;
-    justify-content: center;
-    min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
 }

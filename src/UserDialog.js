@@ -11,7 +11,7 @@ export default class UserDialog extends Component{
     	this.state = {
           selectedTab: 'signInOrSignUp', //'forgotPassword'
       		formData: {
-            email: '',
+                email: '',
       			username: '',
       			password: '',
       		}
@@ -20,6 +20,19 @@ export default class UserDialog extends Component{
     signUp(e){
       e.preventDefault()
       let {email,username, password} = this.state.formData
+      var re = /@/  
+      if(!re.test(email)){
+          alert("请输入正确邮箱")
+          return;
+      }
+      if(username.length<=3){
+          alert("用户名必须大于三个字符")
+          return;  
+      }
+      if(password.length<6){
+          alert("密码必须不小于6个字符")
+          return;  
+      }
       let success = (user)=>{
         this.props.onSignUp.call(null, user)
       }
@@ -36,7 +49,7 @@ export default class UserDialog extends Component{
             break
         }
      }
-      signUp(email,username, password, success, error)
+      signUp(username, password, email, success, error)
     }
   	signIn(e){
       e.preventDefault()
@@ -77,26 +90,28 @@ export default class UserDialog extends Component{
      	  return (
        		<div className="UserDialog-Wrapper">
         		<div className="UserDialog">
-            {
-              this.state.selectedTab === 'signInOrSignUp' ?
-                <SignInOrSignUp
-                  formData={this.state.formData}
-                  onSignIn={this.signIn.bind(this)}
-                  onSignUp={this.signUp.bind(this)}
-                  onChange={this.changeFormData.bind(this)}
-                  onForgotPassword={this.showForgotPassword.bind(this)}
-                /> :
-              <ForgotPasswordForm
-                formData={this.state.formData}
-                onSubmit={this.resetPassword.bind(this)}
-                onChange={this.changeFormData.bind(this)}
-                onSignIn={this.returnToSignIn.bind(this)}
-              />
-            }
-        		</div>
+                    <h1>todoList</h1>
+                    {
+                    this.state.selectedTab === 'signInOrSignUp' ?
+                        <SignInOrSignUp
+                        formData={this.state.formData}
+                        onSignIn={this.signIn.bind(this)}
+                        onSignUp={this.signUp.bind(this)}
+                        onChange={this.changeFormData.bind(this)}
+                        onForgotPassword={this.showForgotPassword.bind(this)}
+                        /> :
+                    <ForgotPasswordForm
+                        formData={this.state.formData}
+                        onSubmit={this.resetPassword.bind(this)}
+                        onChange={this.changeFormData.bind(this)}
+                        onSignIn={this.returnToSignIn.bind(this)}
+                    />
+                    }
+        	   </div>
       		</div>
     	  )
   	}
+
     showForgotPassword(){
       let stateCopy = JSON.parse(JSON.stringify(this.state))
       stateCopy.selectedTab = 'forgotPassword'
@@ -109,6 +124,12 @@ export default class UserDialog extends Component{
     }
     resetPassword(e){
       e.preventDefault()
-      sendPasswordResetEmail(this.state.formData.email) 
+      let successFn = () => {
+        alert('重置密码已发送成功，请前往邮箱验证');
+      }
+      let errorFn = () => {
+        alert('邮件发送失败，请重新发送重置密码邮件')
+      }
+      sendPasswordResetEmail(this.state.formData.email,successFn,errorFn) 
     }
 }

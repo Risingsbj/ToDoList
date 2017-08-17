@@ -1,18 +1,120 @@
 .App {
-  color: #333;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  background: white;
-  margin: 2em;
-  padding: 0 1em;
+  color: rgb(38, 38, 38);
   min-height: 20em;
   min-width: 32em;
-  box-shadow: 0 0 1em hsla(0,0%,0%,0.15);
-}
-.App > .todoList> li:nth-child(odd){
-  background: #eee;
-}
-.App > .todoList> li:nth-child(even){
-  background: transparent;
+  font-family: 'Helvetica Neue',Helvetica,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
+.App>.aside-opened{
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 280px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.App>.aside-opened>.header{
+  background-color: #fff;
+  color: #0f88eb;
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  padding: 13px 10px;
+}
+
+.App>.aside-closed{
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 50px;
+  background-color: #fff;
+}
+
+.App>.aside-closed>.header{
+  background-color: #fff;
+  color: #0f88eb;
+  height: 49px;
+}
+
+.App>.aside-closed>.first-letter{
+  background-color: #0f88eb;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  padding: 8px 0;
+  border-radius: 50%;
+  margin: 10px 4px;
+}
+
+.App>.icon-caidan{
+  font-size: 30px;
+  color: #0f88eb;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.App>.aside-opened>.header>p{
+  font-weight: 700;
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: center;
+  font-size: 23px;
+  margin-left: 30px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 193px;
+}
+
+.App>.aside-opened>.header>button{
+  background: transparent;
+  color: #0f88eb;
+  border: 1px solid rgb(15, 136, 235);
+  border-radius: 3px;
+  padding: 3px 5px;
+  cursor: pointer;
+}
+
+.App>.aside-opened>.header>button:hover{
+  opacity: 0.7;
+}
+
+.App>.main{
+  flex-grow: 1;
+  flex-shrink: 1;
+  background: transparent;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.App>.main>.header{
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(30, 30, 30);
+  background-color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  margin: 0 13px;
+  padding: 13px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.App>.main>.todos{
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow-y: scroll;
+  margin-right: -17px;
+  padding: 15px;
+}
